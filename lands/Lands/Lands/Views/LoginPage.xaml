@@ -5,14 +5,15 @@
              x:Class="Lands.Views.LoginPage"
              Title="Lands">
     <ContentPage.Content>
-        <ScrollView>
-
+        <ScrollView
+            BindingContext="{Binding Login}">
             <StackLayout
                 Padding="10,20,10,5">
                 <Image
                     Source="onu"
                     WidthRequest="200"></Image>
                 <Grid
+                    VerticalOptions="CenterAndExpand"
                     Margin="10,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -23,25 +24,30 @@
                         Grid.Column="0"
                         Text="E-Mail">
                     </Label>
-                    <Entry
+                    <Entry   
+                        Text="{Binding Email, Mode=TwoWay}"
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
                         Placeholder="Enter your email...">
                     </Entry>
                     <Label
+                        
                         Grid.Row="1"
                         Grid.Column="0"
                         Text="Password">
                     </Label>
                     <Entry
+                        Text="{Binding Password, Mode=TwoWay}"
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="Enter your password...">
                     </Entry>
                 </Grid>
-                <ActivityIndicator>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <StackLayout
                     Margin="10,0"
@@ -52,18 +58,22 @@
                         VerticalOptions="Center">
                     </Label>
                     <Switch
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
                         HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
                 <Label
                     HorizontalOptions="Center"
                     Text="Forgor your password?"
-                    TextColor="Blue">
+                    TextColor="Blue"
+                    VerticalOptions="CenterAndExpand">
                 </Label>
                 <StackLayout
                     Orientation="Horizontal"
-                    Margin="40,0">
+                    Margin="40,0"
+                    VerticalOptions="CenterAndExpand">
                     <Button
+                        Command="{Binding LoginCommand}"
                         BackgroundColor="Navy"
                         BorderRadius="23"
                         HeightRequest="46"
@@ -80,6 +90,8 @@
                     </Button>
                 </StackLayout>
                 <StackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand"
                     Orientation="Horizontal">
                     <Image
                         Source="facebook_logo"
